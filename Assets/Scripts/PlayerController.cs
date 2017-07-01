@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public Text countText;
     public Text winText;
     public Text timer;
+    public Slider SpeedSlider;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
         SetCountText();
         winText.text = "";
         timer.text = "Time : 00:00";
+        SpeedSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
     }
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -47,6 +49,11 @@ public class PlayerController : MonoBehaviour {
         {
             winText.text = Time.realtimeSinceStartup.ToString();
         }
+    }
+
+    void ValueChangeCheck()
+    {
+        speed = SpeedSlider.value;
     }
 }
 
